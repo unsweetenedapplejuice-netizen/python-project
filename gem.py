@@ -52,12 +52,12 @@ client = genai.Client(api_key=os.getenv("API_KEY"))
 
 # 1. Upload the file
 # Note: Ensure the path to your image is correct relative to this script
-my_file = client.files.upload(path="Strawberries-Header-OG.jpg") 
+my_file = client.files.upload(file="Strawberries-Header-OG.jpg") 
 
 # 2. Generate content
 # We pass the file object directly in the list
 response = client.models.generate_content(
-    model="gemini-2.0-flash-exp", # Using the latest 2.0 Flash for best results
+    model="gemini-2.0-flash", # Using the latest 2.0 Flash for best results
     contents=[my_file, "Caption this image."]
 )
 
