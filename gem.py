@@ -64,3 +64,4 @@ response = client.models.generate_content(
     contents=[my_file, "Caption this image."]
 )
 print(response.text)
+#next goal: set up means of user input into terminal and dd more images
