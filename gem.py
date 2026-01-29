@@ -47,6 +47,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 # Ensure your API Key is set in your environment variables or pass it here
 client = genai.Client(api_key=os.getenv("API_KEY"))
 
@@ -60,5 +61,4 @@ response = client.models.generate_content(
     model="gemini-2.0-flash", # Using the latest 2.0 Flash for best results
     contents=[my_file, "Caption this image."]
 )
-
 print(response.text)
