@@ -47,10 +47,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 # Ensure your API Key is set in your environment variables or pass it here
 client = genai.Client(api_key=os.getenv("API_KEY"))
-
+#for m in client.models.list():
+    # Only show models that support generating content
+#    if 'generateContent' in m.supported_actions:
+#        print(m.name)
 # 1. Upload the file
 # Note: Ensure the path to your image is correct relative to this script
 my_file = client.files.upload(file="Strawberries-Header-OG.jpg") 
@@ -58,7 +60,7 @@ my_file = client.files.upload(file="Strawberries-Header-OG.jpg")
 # 2. Generate content
 # We pass the file object directly in the list
 response = client.models.generate_content(
-    model="gemini-1.5-flash-002",
+    model="gemini-2.5-flash",
     contents=[my_file, "Caption this image."]
 )
 print(response.text)
