@@ -58,7 +58,7 @@ my_file = client.files.upload(file="Strawberries-Header-OG.jpg")
 # 2. Generate content
 # We pass the file object directly in the list
 response = client.models.generate_content(
-    model="gemini-2.0-flash", # Using the latest 2.0 Flash for best results
+    model="gemini-1.5-flash-002",
     contents=[my_file, "Caption this image."]
 )
 print(response.text)
