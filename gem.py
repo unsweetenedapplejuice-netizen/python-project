@@ -64,4 +64,4 @@ response = client.models.generate_content(
     contents=[my_file, "Describe the food in this image in a single paragraph while speaking like a medical professional. If the food is an apple, only state that the apple is delicious. If the image doesn't include food, refuse to give any information about the image in a flabberghasted manner. Otherwise, use medical jargon and technical scientific terms such as vitamins, antioxidants, and phytochemicals to describe the food in this image. Make sure to go over what is in the food. Do not speak in normal english." ]
 )
 print(response.text)
-#next goal: set up means of user input into terminal and add more images
+#next goal: set up means of user input into terminal so that user can upload their own images to get descriptions
