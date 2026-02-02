@@ -61,7 +61,7 @@ my_file = client.files.upload(file="Strawberries-Header-OG.jpg")
 # We pass the file object directly in the list
 response = client.models.generate_content(
     model="gemini-2.5-flash",
-    contents=[my_file, "Caption this image."]
+    contents=[my_file, "Describe this image in a single paragraph while speaking like a medical professional. Use medical jargon and technical scientific terms such as vitamins, antioxidants, and phytochemicals to describe the food in this image. Do not speak in normal english." ]
 )
 print(response.text)
-#next goal: set up means of user input into terminal and dd more images
+#next goal: set up means of user input into terminal and add more images
