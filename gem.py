@@ -44,6 +44,7 @@
 import google.genai as genai
 import os
 from dotenv import load_dotenv
+from PIL import Image
 
 load_dotenv()
 
@@ -53,9 +54,17 @@ client = genai.Client(api_key=os.getenv("API_KEY"))
     # Only show models that support generating content
 #    if 'generateContent' in m.supported_actions:
 #        print(m.name)
+file_path = input("Drag and drop your image here and press Enter: ").strip("'\" ")
+
+try:
+    with Image.open(file_path) as img:
+        print(f"Successfully loaded {file_path}!")
+        print(f"Format: {img.format}, Size: {img.size}")
+except Exception as e:
+    print(f"Could not read the image: {e}")
 # 1. Upload the file
 # Note: Ensure the path to your image is correct relative to this script
-my_file = client.files.upload(file="Strawberries-Header-OG.jpg") 
+my_file = client.files.upload(file=file_path) 
 
 # 2. Generate content
 # We pass the file object directly in the list
