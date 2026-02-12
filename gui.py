@@ -11,15 +11,15 @@ class GeminiApp(ctk.CTk):
     def __init__(self):
         super().__init__()
         
-        self.title("Gemini 2.5 Medical Analyst")
-        self.geometry("600x500")
+        self.title("AI Food Medical Analyst")
+        self.geometry("1200x700")
         
         # Initialize Gemini Client
         self.client = genai.Client(api_key=os.getenv("API_KEY"))
         self.selected_file_path = None
 
         # --- UI Elements ---
-        self.label = ctk.CTkLabel(self, text="Upload an image for medical analysis", font=("Arial", 16))
+        self.label = ctk.CTkLabel(self, text="Upload an image of food", font=("Arial", 16))
         self.label.pack(pady=20)
 
         self.upload_btn = ctk.CTkButton(self, text="Select Image", command=self.select_file)
@@ -28,7 +28,7 @@ class GeminiApp(ctk.CTk):
         self.analyze_btn = ctk.CTkButton(self, text="Run Analysis", command=self.run_analysis, state="disabled")
         self.analyze_btn.pack(pady=10)
 
-        self.result_text = ctk.CTkTextbox(self, width=500, height=200, wrap="word")
+        self.result_text = ctk.CTkTextbox(self, width=1000, height=400, wrap="word")
         self.result_text.pack(pady=20)
 
     def select_file(self):
@@ -40,7 +40,7 @@ class GeminiApp(ctk.CTk):
 
     def run_analysis(self):
         self.result_text.delete("1.0", "end")
-        self.result_text.insert("insert", "Analyzing... please wait medical professional.")
+        self.result_text.insert("insert", "Analyzing... please wait.")
         
         # We update the UI to show it's working
         self.update_idletasks()
@@ -53,7 +53,7 @@ class GeminiApp(ctk.CTk):
             prompt = ("Describe the food in this image in a single paragraph while speaking like a medical professional. "
                       "If the food is an apple, only state that the apple is delicious. "
                       "If the image doesn't include food, refuse to give any information about the image in a flabberghasted manner. "
-                      "Otherwise, use medical jargon and technical scientific terms such as vitamins, antioxidants, and phytochemicals.")
+                      "Otherwise, use medical jargon and technical scientific terms such as vitamins, antioxidants, and phytochemicals to describe the food in this image. Make sure to go over what is in the food. Do not speak in normal english.")
 
             response = self.client.models.generate_content(
                 model="gemini-2.5-flash",
